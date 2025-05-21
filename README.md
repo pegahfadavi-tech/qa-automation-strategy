@@ -2,6 +2,12 @@
 
 This project implements automated testing strategy for an online store (inspired by Digikala) using Python, Selenium, and Behave framework.
 
+## 📎 Downloadable Test Artifacts
+- [Manual Test Cases (Excel)](automation/docs/Test_Cases_Manual.xlsx)
+- [Sample API Test Output](automation/api_tests/outputs/api_test_output.txt)
+- [Edge Case Feature File](automation/features/edge_cases.feature)
+- [Edge Case Step Implementation](automation/steps/edge_cases_steps.py)
+
 ## Project Structure
 ```
 qa-automation-strategy/
