@@ -2,7 +2,7 @@ from behave import when, then
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from selectors.digikala_selectors import LOGIN_PAGE
+from automation.selectors.locators import LOGIN_PAGE
 
 @when('I leave the email and password fields empty and click login')
 def step_impl(context):

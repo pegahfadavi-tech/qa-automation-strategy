@@ -5,7 +5,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.service import Service
-from selectors.digikala_selectors import LOGIN_PAGE, COMMON
+from automation.selectors.locators import LOGIN_PAGE, COMMON
 
 @given('I open the Digikala login page')
 def step_impl(context):
