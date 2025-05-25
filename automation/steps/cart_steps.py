@@ -4,14 +4,15 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
-from automation.selectors.locators import PRODUCT_PAGE, CART_PAGE, COMMON, HEADER, BASKET_ELEMENT, BASKET_ELEMENT_NEW, CART_ITEM_CHECK
+from automation.selectors.locators import PRODUCT_PAGE, CART_PAGE, COMMON, HEADER, BASKET_ELEMENT, BASKET_ELEMENT_NEW, \
+    CART_ITEM_CHECK
 
 @given('I open a product page on Digikala')
 def open_product_page(context):
     context.driver = webdriver.Chrome()
-    context.driver.get("https://www.digikala.com/product/dkp-12376940/")  
+    context.driver.get("https://www.digikala.com/product/dkp-12376940/")
     context.driver.maximize_window()
-    
+
     try:
         WebDriverWait(context.driver, 20).until(
             EC.presence_of_element_located((By.XPATH, PRODUCT_PAGE["product_title"][1]))
@@ -20,13 +21,15 @@ def open_product_page(context):
     except TimeoutException:
         raise AssertionError("Could not load product page within 20 seconds.")
 
+
 @when('I click on add to cart')
 def click_add_to_cart(context):
     try:
         elements = context.driver.find_elements(By.CSS_SELECTOR, PRODUCT_PAGE["add_to_cart_button"][1])
         print(f"Found {len(elements)} elements for add to cart button selector.")
         for idx, el in enumerate(elements):
-            print(f"Element {idx}: tag={el.tag_name}, text={el.text}, enabled={el.is_enabled()}, displayed={el.is_displayed()}")
+            print(
+                f"Element {idx}: tag={el.tag_name}, text={el.text}, enabled={el.is_enabled()}, displayed={el.is_displayed()}")
         add_to_cart_button = WebDriverWait(context.driver, 20).until(
             EC.element_to_be_clickable((By.CSS_SELECTOR, PRODUCT_PAGE["add_to_cart_button"][1]))
         )
@@ -49,10 +52,12 @@ def click_add_to_cart(context):
     except TimeoutException:
         raise AssertionError("Could not find or click the add to cart button within 20 seconds.")
 
+
 @when('I go to the cart page')
 def go_to_cart_page(context):
     context.driver.get("https://www.digikala.com/checkout/cart/")
     print("✓ Navigated directly to the cart page.")
+
 
 @then('I should see the item in the cart')
 def verify_cart_items(context):
@@ -70,4 +75,4 @@ def verify_cart_items(context):
     except TimeoutException:
         raise AssertionError("Could not verify cart items within 20 seconds.")
     finally:
-        context.driver.quit() 
+        context.driver.quit()
