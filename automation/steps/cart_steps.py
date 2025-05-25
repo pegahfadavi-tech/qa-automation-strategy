@@ -10,7 +10,7 @@ from automation.selectors.locators import PRODUCT_PAGE, CART_PAGE, COMMON, HEADE
 @given('I open a product page on Digikala')
 def open_product_page(context):
     context.driver = webdriver.Chrome()
-    context.driver.get("https://www.digikala.com/product/dkp-12376940/")
+    context.driver.get("https://www.digikala.com/product/dkp-14503590")
     context.driver.maximize_window()
 
     try:
