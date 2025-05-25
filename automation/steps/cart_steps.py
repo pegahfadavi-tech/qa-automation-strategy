@@ -7,10 +7,11 @@ from selenium.common.exceptions import TimeoutException
 from automation.selectors.locators import PRODUCT_PAGE, CART_PAGE, COMMON, HEADER, BASKET_ELEMENT, BASKET_ELEMENT_NEW, \
     CART_ITEM_CHECK
 
+
 @given('I open a product page on Digikala')
 def open_product_page(context):
     context.driver = webdriver.Chrome()
-    context.driver.get("https://www.digikala.com/product/dkp-14503590")
+    context.driver.get("https://www.digikala.com/product/dkp-14503590/")
     context.driver.maximize_window()
 
     try:
@@ -76,3 +77,15 @@ def verify_cart_items(context):
         raise AssertionError("Could not verify cart items within 20 seconds.")
     finally:
         context.driver.quit()
+
+
+@then('I should see the product name on the product page')
+def check_product_name(context):
+    try:
+        product_name_element = WebDriverWait(context.driver, 20).until(
+            EC.presence_of_element_located((By.XPATH, PRODUCT_PAGE["product_title"][1]))
+        )
+        product_name = product_name_element.text
+        print(f"Product Name: {product_name}")
+    except TimeoutException:
+        raise AssertionError("Could not find the product name within 20 seconds.")
